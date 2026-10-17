@@ -35,7 +35,11 @@ app.get("/api/health", (_req, res) => {
 app.use("/api/auth", authRoutes);
 app.use("/api/author", authorRoutes);
 app.use("/api/tickets", ticketRoutes);
-app.use("/api/test", testAuthRoutes);
+
+// Test routes mounted only in non-production environments
+if (config.nodeEnv !== "production") {
+  app.use("/api/test", testAuthRoutes);
+}
 
 // Error Handling Middleware
 app.use(errorHandler);
