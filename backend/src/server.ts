@@ -1,4 +1,4 @@
-import express from "express";
+import express, { type Request, type Response } from "express";
 import cors from "cors";
 import helmet from "helmet";
 import { fileURLToPath } from "url";
@@ -24,7 +24,7 @@ app.use(
 app.use(express.json());
 
 // Health check
-app.get("/api/health", (_req, res) => {
+app.get("/api/health", (_req: Request, res: Response) => {
   res.status(200).json({
     success: true,
     message: "BookLeaf API is running",
